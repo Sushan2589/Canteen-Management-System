@@ -1,112 +1,79 @@
 document.addEventListener("DOMContentLoaded", () => {
-let plusBtns = document.querySelectorAll(".qty-btn.plus");
-let minusBtns = document.querySelectorAll(".qty-btn.minus")
-let qtyEls = document.querySelectorAll(".qty");
-let addBtn = document.querySelectorAll(".add-btn")
-let orderList = document.querySelector(".order-list");
+  const addBtns = document.querySelectorAll(".add-btn");
+  const orderList = document.querySelector(".order-list");
+  const totalEl = document.querySelector(".total");
+  const badgeEl = document.getElementById("badge");
 
+  function updateTotal() {
+    const items = document.querySelectorAll(".sidebar-item");
+    let total = 0;
 
-// plusBtns.forEach((btn, index) => {
-//   btn.addEventListener("click", () => {
-//     let currentQty = parseInt(qtyEls[index].textContent);
-//     qtyEls[index].textContent = currentQty + 1;
-//   });
-// });
+    items.forEach(item => {
+      const priceText = item.querySelector(".item-price").textContent;
+      const price = Number(priceText.replace("Rs.", "").trim());
+      const qty = Number(item.querySelector(".qty").textContent);
 
-// minusBtns.forEach((btn, index) => {
-//   btn.addEventListener("click", () => {
-//     let currentQty = parseInt(qtyEls[index].textContent);
-//     if(currentQty>0)
-//     {
-//         qtyEls[index].textContent = currentQty - 1;
-//     }
+      total += price * qty;
+    });
 
-//     if(currentQty==0)
-//     {
-//       //remove the order item
-//     }
-    
-//   });
-// });
-
-orderList.addEventListener("click",(e)=>{
-  if(e.target.closest(".plus"))
-  {
-    const qty = e.target.closest(".qty-controls").querySelector(".qty");
-    qty.textContent = Number(qty.textContent) + 1;
-
+    totalEl.textContent = `Rs. ${total}`;
+    badgeEl.textContent = `${items.length} Items`;
   }
 
-  if(e.target.closest(".minus"))
-  {
-    const qty = e.target.closest(".qty-controls").querySelector(".qty");
-     const cardItem = e.target.closest(".sidebar-item");
-    if (qty.textContent > 1) {
-      qty.textContent = Number(qty.textContent) - 1;
+  // Event delegation for + and -
+  orderList.addEventListener("click", (e) => {
+    if (e.target.closest(".plus")) {
+      const qty = e.target.closest(".qty-controls").querySelector(".qty");
+      qty.textContent = Number(qty.textContent) + 1;
+      updateTotal();
     }
 
-    else
-    {
-      cardItem.remove()
-    }
+    if (e.target.closest(".minus")) {
+      const qty = e.target.closest(".qty-controls").querySelector(".qty");
+      const item = e.target.closest(".sidebar-item");
 
-  
-    
-  
-  }
-})
-
-
-addBtn.forEach((btn,index)=>{
-  btn.addEventListener("click",()=>{
-    
-    let itemNames = document.querySelectorAll(".card-info-header")
-    let itemName = itemNames[index].textContent
-
-    let itemPrices = document.querySelectorAll(".price")
-    let itemPrice = itemPrices[index].textContent
-   
-    const sideBarItems = orderList.getElementsByClassName("sidebar-item")
-    let found = false;
-    for(let i=0;i<sideBarItems.length;i++)
-    {
-      let nameSearch = sideBarItems[i].getElementsByClassName("item-name")[0]
-
-      if(nameSearch.textContent === itemName)
-      {
-        //found increase quanitity
-        let foundQty = sideBarItems[i].getElementsByClassName("qty")[0]
-        foundQty.textContent = Number(foundQty.textContent)+1;
-        found = true;
-        break
+      if (Number(qty.textContent) > 1) {
+        qty.textContent = Number(qty.textContent) - 1;
+      } else {
+        item.remove();
       }
+      updateTotal();
     }
+  });
 
-    if(!found)
-    {
-      orderList.insertAdjacentHTML("beforeend", `
-    <div class="sidebar-item">
-      <div class="item-details">
-        <span class="item-name">${itemName}</span>
-        <span class="item-price">${itemPrice}</span>
-      </div>
-      <div class="qty-controls">
-        <button class="qty-btn minus">
-          <i class="fa-solid fa-minus"></i>
-        </button>
-        <span class="qty">1</span>
-        <button class="qty-btn plus">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
-    </div>
-  `)
-    }
-    
+  addBtns.forEach((btn, index) => {
+    btn.addEventListener("click", () => {
+      const itemName = document.querySelectorAll(".card-info-header")[index].textContent;
+      const itemPrice = document.querySelectorAll(".price")[index].textContent;
 
+      const sidebarItems = document.querySelectorAll(".sidebar-item");
+      let found = false;
 
+      sidebarItems.forEach(item => {
+        if (item.querySelector(".item-name").textContent === itemName) {
+          const qty = item.querySelector(".qty");
+          qty.textContent = Number(qty.textContent) + 1;
+          found = true;
+        }
+      });
 
-  })
-})
+      if (!found) {
+        orderList.insertAdjacentHTML("beforeend", `
+          <div class="sidebar-item">
+            <div class="item-details">
+              <span class="item-name">${itemName}</span>
+              <span class="item-price">${itemPrice}</span>
+            </div>
+            <div class="qty-controls">
+              <button class="qty-btn minus"><i class="fa-solid fa-minus"></i></button>
+              <span class="qty">1</span>
+              <button class="qty-btn plus"><i class="fa-solid fa-plus"></i></button>
+            </div>
+          </div>
+        `);
+      }
 
-})
+      updateTotal();
+    });
+  });
+});
