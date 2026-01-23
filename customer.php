@@ -18,6 +18,7 @@ $records = mysqli_query($conn, $sql);
 </head>
 
 <body>
+  
 
   <nav id="navbar">
     <h2>Canteen Connect</h2>
@@ -77,5 +78,6 @@ $records = mysqli_query($conn, $sql);
 
   <script src="js/customer.js"></script>
 </body>
+
 
 </html>
