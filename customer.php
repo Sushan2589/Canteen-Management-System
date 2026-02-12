@@ -69,7 +69,7 @@ $records = mysqli_query($conn, $sql);
             <span>Total</span>
             <span class="total"></span>
           </div>
-          <button id="place-order">Place Order</button>
+          <button type="button" id="place-order">Place Order</button>
         </div>
 
       </div>

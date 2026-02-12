@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  
   const addBtns = document.querySelectorAll(".add-btn");
   const orderList = document.querySelector(".order-list");
   const totalEl = document.querySelector(".total");
@@ -76,6 +77,67 @@ document.addEventListener("DOMContentLoaded", () => {
       updateTotal();
     });
   });
+
+
+//CART
+
+function getCartData() {
+  const items = document.querySelectorAll(".sidebar-item");
+  let cart = [];
+
+  items.forEach(item => {
+    const name = item.querySelector(".item-name").textContent;
+    const priceText = item.querySelector(".item-price").textContent;
+    const price = Number(priceText.replace("Rs.", "").trim());
+    const qty = Number(item.querySelector(".qty").textContent);
+
+    cart.push({
+      name: name,
+      price: price,
+      quantity: qty,
+      total: price * qty
+    });
+  });
+
+  return cart;
+}
+
+
+
+
+const placeOrderBtn = document.getElementById("place-order");
+
+console.log("Button:", placeOrderBtn);
+
+if (placeOrderBtn) {
+  placeOrderBtn.addEventListener("click", () => {
+    const cart = getCartData();
+
+    if (cart.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    fetch("checkout.php", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(cart)
+})
+.then(response => response.text())
+.then(orderId => {
+  orderId = orderId.trim();
+  window.location.href = "receipt.php?order_id=" + orderId;
+})
+.catch(error => {
+  console.error("Fetch error:", error);
+});
+
+  });
+}
+
+
 
   
 
