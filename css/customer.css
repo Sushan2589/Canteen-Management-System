@@ -266,3 +266,65 @@ body {
     #menu-section { overflow: visible; }
 }
 
+/* NAVBAR MAIN */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #1f2937;
+    color: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo {
+    font-size: 22px;
+    font-weight: 700;
+}
+
+/* Right section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* User info container */
+.user-info {
+    display: flex;
+    gap: 12px;
+}
+
+/* ID + Name pill */
+.user-pill {
+    background: #374151;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Balance pill */
+.balance-pill {
+    background: #16a34a;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+/* Logout button */
+.logout-link {
+    text-decoration: none;
+    background: #ef4444;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logout-link:hover {
+    background: #dc2626;
+}

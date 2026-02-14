@@ -132,7 +132,8 @@ form {
 
 /* Inputs */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="number"] {
     width: 100%;
     padding: 12px 12px 12px 45px; /* Padding left for icon */
     border-radius: 12px;

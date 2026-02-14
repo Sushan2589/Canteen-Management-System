@@ -1,7 +1,23 @@
 <?php
 require("connection.php");
+session_start();
+
+if (!isset($_SESSION['user_logged_in'])) {
+    header("Location: index.html");
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+
+$user_sql = "SELECT id, name, balance FROM users WHERE id='$user_id'";
+$user_result = mysqli_query($conn, $user_sql);
+$user = mysqli_fetch_assoc($user_result);
+
+
 $sql = "SELECT * FROM menu_items";
 $records = mysqli_query($conn, $sql);
+
+
 ?>
 
 <html lang="en">
@@ -20,10 +36,26 @@ $records = mysqli_query($conn, $sql);
 <body>
   
 
-  <nav id="navbar">
-    <h2>Canteen Connect</h2>
-    <a href="index.html" class="logout-link"><i class="fa-solid fa-arrow-left"></i> Logout</a>
-  </nav>
+ <nav id="navbar">
+    <h2 class="logo">Canteen Connect</h2>
+
+    <div class="nav-right">
+
+        <div class="user-info">
+            <span class="user-pill">ID: <?php echo $user['id']; ?></span>
+            <span class="user-pill">👤 <?php echo $user['name']; ?></span>
+            <span class="balance-pill">💰 Rs. <?php echo $user['balance']; ?></span>
+        </div>
+
+        <a href="process_logout.php" class="logout-link">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+
+    </div>
+</nav>
+
+
 
   <div id="main-layout">
 
