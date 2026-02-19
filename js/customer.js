@@ -107,10 +107,12 @@ function getCartData() {
 
 const placeOrderBtn = document.getElementById("place-order");
 
+
 console.log("Button:", placeOrderBtn);
 
 if (placeOrderBtn) {
   placeOrderBtn.addEventListener("click", () => {
+    let totalAmount = document.querySelector(".total").innerText;
     const cart = getCartData();
 
     if (cart.length === 0) {
