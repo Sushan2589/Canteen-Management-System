@@ -330,23 +330,75 @@ body {
 
 
 
-/* ------------------- RESPONSIVE UPDATES ------------------- */
+/* ------------------ NAVBAR RESPONSIVE ------------------ */
 
-/* Navbar responsive */
+/* Base navbar */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* allow wrapping */
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Logo */
+.logo img {
+    height: 60px;
+    width: auto;
+}
+
+/* Right section */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap; /* wrap user pills and logout on smaller screens */
+}
+
+/* Pills */
+.user-pill, .balance-pill {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background: #374151;
+    color: white;
+}
+
+/* Balance pill color */
+.balance-pill { background: #16a34a; }
+
+/* Logout link */
+.logout-link {
+    text-decoration: none;
+    background: #ef4444;
+    padding: 6px 14px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.logout-link:hover { background: #dc2626; }
+
+/* ---------------- MEDIA QUERIES ---------------- */
+
+/* Tablet / small desktop */
 @media (max-width: 992px) {
     #navbar {
         flex-direction: column;
         align-items: flex-start;
         padding: 15px 20px;
-        gap: 10px;
-        height: auto;
     }
 
     .nav-right {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
         width: 100%;
+        gap: 10px;
     }
 
     .user-info {
@@ -355,79 +407,14 @@ body {
     }
 
     .logo img {
-        height: 50px; /* shrink logo on smaller screens */
+        height: 50px;
     }
 }
 
-/* Main layout responsive */
-@media (max-width: 992px) {
-    #main-layout {
-        flex-direction: column;
-        height: auto;
-        padding: 15px;
-        gap: 20px;
-    }
-
-    #sidebar-wrapper {
-        width: 100%;
-        height: auto;
-        order: 2; /* sidebar below menu */
-    }
-
-    #menu-section {
-        flex: unset;
-        width: 100%;
-        order: 1;
-    }
-}
-
-/* Smaller tablets / large phones */
-@media (max-width: 768px) {
-    #menu-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-    }
-
-    .food-card {
-        padding: 1rem;
-    }
-
-    .card-icon {
-        width: 60px;
-        height: 60px;
-        font-size: 2.2rem;
-    }
-
-    .card-info h3 {
-        font-size: 1rem;
-    }
-
-    .price {
-        font-size: 1rem;
-    }
-
-    .add-btn {
-        font-size: 0.9rem;
-        padding: 6px 12px;
-    }
-
-    #sidebar-wrapper {
-        padding: 1rem;
-    }
-
-    #order-sidebar {
-        padding: 1rem;
-    }
-
-    #side-header h3 {
-        font-size: 1.2rem;
-    }
-}
-
-/* Mobile Phones */
+/* Mobile phones */
 @media (max-width: 480px) {
     #navbar {
-        padding: 12px 15px;
+        padding: 10px 15px;
     }
 
     .logo img {
@@ -436,77 +423,11 @@ body {
 
     .user-pill, .balance-pill {
         font-size: 12px;
-        padding: 4px 10px;
+        padding: 4px 8px;
     }
 
     .logout-link {
         font-size: 12px;
-        padding: 6px 12px;
-    }
-
-    #menu-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-        gap: 12px;
-    }
-
-    .food-card {
-        padding: 0.8rem;
-    }
-
-    .card-icon {
-        width: 50px;
-        height: 50px;
-        font-size: 1.8rem;
-    }
-
-    .card-info h3 {
-        font-size: 0.95rem;
-    }
-
-    .price {
-        font-size: 0.95rem;
-    }
-
-    .add-btn {
-        font-size: 0.85rem;
         padding: 5px 10px;
-    }
-
-    #sidebar-wrapper {
-        height: auto;
-    }
-
-    #order-sidebar {
-        height: auto;
-    }
-
-    #side-header h3 {
-        font-size: 1rem;
-    }
-}
-
-/* Extra Small Phones (under 360px) */
-@media (max-width: 360px) {
-    #menu-grid {
-        grid-template-columns: 1fr; /* single column cards */
-    }
-
-    .card-icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.6rem;
-    }
-
-    .card-info h3 {
-        font-size: 0.9rem;
-    }
-
-    .price {
-        font-size: 0.9rem;
-    }
-
-    .add-btn {
-        font-size: 0.8rem;
-        padding: 5px 8px;
     }
 }
