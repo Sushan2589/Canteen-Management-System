@@ -277,10 +277,9 @@ body {
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-/* Logo */
-.logo {
-    font-size: 22px;
-    font-weight: 700;
+.logo img {
+    height: 60px;   /* change this value */
+    width: auto;    /* keeps aspect ratio */
 }
 
 /* Right section */

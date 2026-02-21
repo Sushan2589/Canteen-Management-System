@@ -108,6 +108,13 @@ if (!isset($_SESSION['admin_logged_in'])) {
                 <h3>User Topup</h3>
             </div>
         </a>
+
+        <a href="add_new_user.php" class="card">
+            <i class="fa-solid fa-plus"></i>
+            <div>
+                <h3>Add New User</h3>
+            </div>
+        </a>
     </div>
 
 </body>

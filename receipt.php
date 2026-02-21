@@ -39,83 +39,142 @@ $total = 0;
 
     <style>
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #f4f6f9;
-            display: flex;
-            justify-content: center;
-            padding: 40px;
-        }
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef2f3, #dfe9f3);
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
 
-        .receipt-box {
-            background: white;
-            padding: 30px;
-            width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
+.receipt-box {
+    background: #ffffff;
+    padding: 35px;
+    width: 420px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    position: relative;
+}
 
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
+/* Header */
+.receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-        .item {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-        }
+.receipt-header h2 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
 
-        .total {
-            border-top: 2px solid #ddd;
-            margin-top: 15px;
-            padding-top: 10px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-        }
+.receipt-header p {
+    font-size: 13px;
+    color: #777;
+}
 
-        .btn-group {
-            margin-top: 20px;
-            text-align: center;
-        }
+/* Order Info */
+.order-info {
+    font-size: 14px;
+    margin-bottom: 15px;
+    color: #555;
+}
 
-        .btn {
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-            font-size: 14px;
-        }
+/* Item Row */
+.item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px dashed #eee;
+}
 
-        .back-btn {
-            background: #28a745;
-            color: white;
-        }
+.item span:first-child {
+    color: #444;
+}
 
-        .download-btn {
-            background: #007bff;
-            color: white;
-        }
+.item span:last-child {
+    font-weight: 600;
+}
 
-        .btn:hover {
-            opacity: 0.9;
-        }
+/* Total Section */
+.total {
+    margin-top: 18px;
+    padding-top: 12px;
+    border-top: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 700;
+}
 
-        @media print {
-            .btn-group {
-                display: none;
-            }
-        }
+/* Buttons */
+.btn-group {
+    margin-top: 25px;
+    text-align: center;
+}
+
+.btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.back-btn {
+    background: #2ecc71;
+    color: white;
+}
+
+.back-btn:hover {
+    background: #27ae60;
+}
+
+.download-btn {
+    background: #3498db;
+    color: white;
+}
+
+.download-btn:hover {
+    background: #2980b9;
+}
+
+/* Print Styling */
+@media print {
+    body {
+        background: white;
+    }
+
+    .btn-group {
+        display: none;
+    }
+
+    .receipt-box {
+        box-shadow: none;
+        border-radius: 0;
+        width: 100%;
+    }
+}
     </style>
 </head>
 
 <body>
 
 <div class="receipt-box" id="receipt">
-    <h2>Canteen Receipt</h2>
-    <p><strong>Order ID:</strong> <?php echo $order_id; ?></p>
-    <hr>
+    <div class="receipt-header">
+    <h2>Smart Bhansa</h2>
+    <p>Canteen Receipt</p>
+</div>
+
+<div class="order-info">
+    <strong>Order ID:</strong> <?php echo $order_id; ?>
+</div>
+
+<hr>
 
     <?php
     while ($row = mysqli_fetch_assoc($result)) {

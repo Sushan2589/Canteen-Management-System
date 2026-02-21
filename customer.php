@@ -37,7 +37,7 @@ $records = mysqli_query($conn, $sql);
   
 
  <nav id="navbar">
-    <h2 class="logo">Canteen Connect</h2>
+    <h2 class="logo"><img src="assests/SmartBhansa.png"></h2>
 
     <div class="nav-right">
 
