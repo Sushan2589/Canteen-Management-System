@@ -327,3 +327,186 @@ body {
 .logout-link:hover {
     background: #dc2626;
 }
+
+
+
+/* ------------------- RESPONSIVE UPDATES ------------------- */
+
+/* Navbar responsive */
+@media (max-width: 992px) {
+    #navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+        gap: 10px;
+        height: auto;
+    }
+
+    .nav-right {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .user-info {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .logo img {
+        height: 50px; /* shrink logo on smaller screens */
+    }
+}
+
+/* Main layout responsive */
+@media (max-width: 992px) {
+    #main-layout {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        gap: 20px;
+    }
+
+    #sidebar-wrapper {
+        width: 100%;
+        height: auto;
+        order: 2; /* sidebar below menu */
+    }
+
+    #menu-section {
+        flex: unset;
+        width: 100%;
+        order: 1;
+    }
+}
+
+/* Smaller tablets / large phones */
+@media (max-width: 768px) {
+    #menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+    }
+
+    .food-card {
+        padding: 1rem;
+    }
+
+    .card-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 2.2rem;
+    }
+
+    .card-info h3 {
+        font-size: 1rem;
+    }
+
+    .price {
+        font-size: 1rem;
+    }
+
+    .add-btn {
+        font-size: 0.9rem;
+        padding: 6px 12px;
+    }
+
+    #sidebar-wrapper {
+        padding: 1rem;
+    }
+
+    #order-sidebar {
+        padding: 1rem;
+    }
+
+    #side-header h3 {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    #navbar {
+        padding: 12px 15px;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .user-pill, .balance-pill {
+        font-size: 12px;
+        padding: 4px 10px;
+    }
+
+    .logout-link {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    #menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 12px;
+    }
+
+    .food-card {
+        padding: 0.8rem;
+    }
+
+    .card-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.8rem;
+    }
+
+    .card-info h3 {
+        font-size: 0.95rem;
+    }
+
+    .price {
+        font-size: 0.95rem;
+    }
+
+    .add-btn {
+        font-size: 0.85rem;
+        padding: 5px 10px;
+    }
+
+    #sidebar-wrapper {
+        height: auto;
+    }
+
+    #order-sidebar {
+        height: auto;
+    }
+
+    #side-header h3 {
+        font-size: 1rem;
+    }
+}
+
+/* Extra Small Phones (under 360px) */
+@media (max-width: 360px) {
+    #menu-grid {
+        grid-template-columns: 1fr; /* single column cards */
+    }
+
+    .card-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.6rem;
+    }
+
+    .card-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .price {
+        font-size: 0.9rem;
+    }
+
+    .add-btn {
+        font-size: 0.8rem;
+        padding: 5px 8px;
+    }
+}
