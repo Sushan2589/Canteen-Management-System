@@ -119,7 +119,12 @@ if (placeOrderBtn) {
       alert("Your cart is empty!");
       return;
     }
+    const confirmOrder = confirm("Are you sure you want to place this order?");
 
+  if (!confirmOrder) {
+    return;   // stop here if user clicks Cancel
+  }
+  
     fetch("checkout.php", {
   method: "POST",
   headers: {
